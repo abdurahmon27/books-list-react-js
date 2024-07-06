@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'Mulish';
+    src: url('../public/fonts/mulish-font.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Mulish';
+    src: url('../public/fonts/mulish-font.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+  }
+
+  .mulish-font {
+    font-family: 'Mulish', sans-serif;
+  }
+  
