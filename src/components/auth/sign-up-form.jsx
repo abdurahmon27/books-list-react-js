@@ -3,12 +3,15 @@ import React, { useState } from "react";
 import { Button } from "@mui/material";
 import CryptoJS from "crypto-js";
 import { HOST } from "../../constants";
+import { useNavigate } from "react-router-dom";
 
 const SignUpForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-
+  const navigate = useNavigate();
+  const [error, setError] = useState(null);
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -64,6 +67,8 @@ const SignUpForm = () => {
       localStorage.setItem("authKey", key);
       localStorage.setItem("authSign", sign);
       localStorage.setItem("username", username);
+
+      navigate("/")
 
       console.log("Key and Sign saved to localStorage.");
     } catch (error) {

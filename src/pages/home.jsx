@@ -37,7 +37,8 @@ const Home = () => {
   if (error) {
     return (
       <div>
-        <SignUpForm />
+        <Header username={name} />
+        <BooksComponent books={books} />
       </div>
     );
   }
