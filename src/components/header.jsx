@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { Input } from "antd";
 import { Button } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../public/logo.png";
 
-export const Header = () => {
+export const Header = ({ username }) => {
+  const [searchValue, setSearchValue] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearchClick = () => {
+    if (searchValue.trim()) {
+      navigate(`/?query=${searchValue}`);
+    }
+  };
+
+//  we can fetch user data from the server by authKey and authSign from localstorage but API doesn't work properly
+
   return (
     <header className="container h-[100px] flex items-center justify-between py-3 max-md:flex-col max-md:gap-y-4 max-md:px-0">
       <div className="flex items-center justify-center space-x-5">
@@ -13,7 +24,10 @@ export const Header = () => {
           htmlFor="search"
           className="flex items-center justify-center relative group"
         >
-          <span className="absolute top-auto left-0">
+          <span
+            className="absolute top-auto left-0 cursor-pointer"
+            onClick={handleSearchClick}
+          >
             <svg
               width="20"
               height="20"
@@ -36,17 +50,26 @@ export const Header = () => {
             className="text-gray-600 bg-transparent border-none placeholder-gray-500 px-10 -translate-x-3 py-2 relative hover:bg-none text-sm -z-10"
             placeholder="Search for the books"
             id="search"
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+            onPressEnter={handleSearchClick}
           />
         </label>
       </div>
-      <div className="flex items-center justify-center space-x-2">
-        <Button className="text-white" variant="contained">
-          <Link to={"/sign-in"}>Sign In</Link>
-        </Button>
-        <Button variant="outlined">
-          <Link to={"/sign-up"}>Create Account</Link>
-        </Button>
-      </div>
+      {username ? (
+        <div className="flex items-center justify-center gap-3">
+          <div className="flex items-center justify-center">{username}</div>
+        </div>
+      ) : (
+        <div className="flex items-center justify-center space-x-2">
+          <Button className="text-white" variant="contained">
+            <Link to={"/sign-in"}>Sign In</Link>
+          </Button>
+          <Button variant="outlined">
+            <Link to={"/sign-up"}>Create Account</Link>
+          </Button>
+        </div>
+      )}
     </header>
   );
 };

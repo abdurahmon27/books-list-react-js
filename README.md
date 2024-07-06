@@ -1,8 +1,29 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Books List
 
-Currently, two official plugins are available:
+A react + vite app for books.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+
+The api part of the code failed after I couldn't use the test api properly.
+
+But I used MUI and antd beautifully
+
+If you want to try the code use these commands by your terminal.
+
+- # Download it
+
+```bash
+git clone https://github.com/abdurahmon27/books-list-react-js.git
+```
+
+- # Install packages and depencies
+
+```bash
+npm install
+```
+- # And run the code
+
+```bash
+npm run dev
+```

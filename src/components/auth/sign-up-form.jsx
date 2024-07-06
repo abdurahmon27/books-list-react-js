@@ -2,8 +2,7 @@ import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import { Button } from "@mui/material";
 import CryptoJS from "crypto-js";
-
-const HOST = "https://no23.lavina.tech"; // Replace with your actual host URL
+import { HOST } from "../../constants";
 
 const SignUpForm = () => {
   const [username, setUsername] = useState("");
@@ -13,16 +12,31 @@ const SignUpForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const key = CryptoJS.MD5(username + password).toString();
+    if (password !== confirmPassword) {
+      console.error("Passwords do not match!");
+      return;
+    }
 
+    // const key = CryptoJS.MD5(username + password).toString();
+    // const raw = JSON.stringify({
+    //   email: `${username}@gmail.com`,
+    //   name: username,
+    //   secret: password,
+    //   key: key,
+    // });
+    // const sign = CryptoJS.MD5("POST" + "/signup" + raw + password).toString();
+
+    // Crypto md5 hashingdan chiqarib bo'lmaydi decrypt qilib bo'lmaydi. lekin sizlar nima uchun bunaqa method ishlatgansizlar.)
+
+    const key = CryptoJS.MD5(username + password).toString();
     const sign = CryptoJS.MD5(key + password).toString();
 
     console.log("key: ", key);
     console.log("sign: ", sign);
 
     const myHeaders = new Headers();
-    myHeaders.append("Key", key);
-    myHeaders.append("Sign", sign);
+    myHeaders.append("Key", 'key12');
+    myHeaders.append("Sign", 'sign12');
     myHeaders.append("Content-Type", "application/json");
 
     const raw = JSON.stringify({
@@ -46,6 +60,12 @@ const SignUpForm = () => {
       }
       const result = await response.text();
       console.log(result);
+
+      localStorage.setItem("authKey", key);
+      localStorage.setItem("authSign", sign);
+      localStorage.setItem("username", username);
+
+      console.log("Key and Sign saved to localStorage.");
     } catch (error) {
       console.error("Error:", error);
     }

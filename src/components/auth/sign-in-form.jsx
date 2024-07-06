@@ -2,9 +2,7 @@ import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import { Button } from "@mui/material";
 import CryptoJS from "crypto-js";
-import { API_KEY } from "../../constants";
-
-const HOST = "https://no23.lavina.tech";
+import { HOST } from "../../constants";
 
 const SignInForm = () => {
   const [username, setUsername] = useState("");
@@ -18,11 +16,8 @@ const SignInForm = () => {
     const key = CryptoJS.MD5(username + password).toString();
     const sign = CryptoJS.MD5(key + password).toString();
 
-    console.log("key: ", key);
-    console.log("sign: ", sign);
-
     const requestOptions = {
-      method: "POST",
+      method: "GET",
       headers: new Headers({
         Key: key,
         Sign: sign,
@@ -34,7 +29,7 @@ const SignInForm = () => {
     try {
       const response = await fetch(`${HOST}/myself`, requestOptions);
       if (!response.ok) {
-        throw new Error("Network response was not ok");
+        throw new Error("Wrong username or password.");
       }
       const result = await response.json();
       setUserInfo(result);

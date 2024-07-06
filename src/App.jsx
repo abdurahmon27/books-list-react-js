@@ -8,6 +8,7 @@ import { ThemeProvider } from "@mui/material";
 import theme from "./lib/mui-theme";
 
 function App() {
+
   return (
     <Router>
       <div className="w-full min-h-screen relative">
@@ -16,6 +17,7 @@ function App() {
           <ThemeProvider theme={theme}>
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/:id" element={<Home />} />
               <Route path="/sign-up" element={<SignUp />} />
               <Route path="/sign-in" element={<SignIn />} />
               <Route path="/books" element={<Home />} />
