@@ -1,5 +1,9 @@
 // Karoche I know code is sucks but your API doesn't work, or I can't use it properly
 
+// but I try my best
+
+// xullas useParams orqali book ni search qilsa bo'ladi, nu menda vaqt kamroq edida
+
 
 
 "use client";
