@@ -12,7 +12,6 @@ const Home = () => {
   const [name, setName] = useState("");
   const navigate = useNavigate();
 
-  console.log(params);
 
   useEffect(() => {
     const key = localStorage.getItem("authKey", "key");
